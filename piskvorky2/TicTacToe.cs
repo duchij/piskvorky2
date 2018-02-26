@@ -10,13 +10,6 @@ namespace piskvorky2
 
     public enum PlayerType { None = 0, Cross = 1, Circle =2 }
 
-    public enum DirectionType { None =0 , Vertical =1, Horizontal = 2, Diagonal =3, InvDiagonal = 4 }
-
-    public struct Point
-    {
-
-    }
-
     class TicTacToe
     {
         private int cols;
@@ -25,8 +18,6 @@ namespace piskvorky2
 
         private PlayerType[,]   matrix = null;
         private PlayerType nextPlayer;
-
-        private HashSet<DirectionType> directions = new HashSet<DirectionType>();
 
 
         public TicTacToe(int c)
