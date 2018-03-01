@@ -79,7 +79,7 @@ namespace piskvorky2
 
                 int res = this.evaluateDirection(direct, pX, pY, 0, 0, false, pl, 0);
 
-            //int t = res;
+                //int t = res;
                 if (res == 5)
                 {
 
