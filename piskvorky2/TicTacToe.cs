@@ -79,7 +79,7 @@ namespace piskvorky2
 
                 int res = this.evaluateDirection(direct, pX, pY, 0, 0, false, pl, 0);
 
-                //int t = res;
+            //int t = res;
                 if (res == 5)
                 {
 
@@ -267,13 +267,13 @@ namespace piskvorky2
 
 
                         //zistujeme mozeme ist o jedno dozadu ak ano --
-                        if (inv == false && vRow - 1 >= 0)
+                        if ((inv == false && vRow - 1 >= 0) && (!inv && vCol-1 >=0))
                         {
                             vRow--;
-                            vCol = vRow;
+                            vCol--;
                             //vCol--;
                         }
-                        else if (inv == false && vRow - 1 < 0) // sme na kraji otocime smer..
+                        else if ((!inv && vRow - 1 < 0) || (!inv && vCol-1<0)) // sme na kraji otocime smer..
                         {
                             inv = true;
                             vRow = pRow + 1;
@@ -281,12 +281,12 @@ namespace piskvorky2
                             this.evaluateDirection(direct, pRow, pCol, vRow, vCol, inv, pl, count);
 
                         }
-                        else if (inv == true && vRow + 1 <= this.rCols) // ideme do prava sme na kraji
+                        else if ((inv && vRow + 1 <= this.rCols)&&(inv && vCol+1<=this.rCols)) // ideme do prava sme na kraji
                         {
                             vRow++;
-                            vCol = vRow;
+                            vCol++;
                         }
-                        else if (inv == true && vRow + 1 > this.rCols) //ideme do prave sme na kraji nepocitame dalej ideme prec
+                        else if ((inv && vRow + 1 > this.rCols) || (inv && vCol+1> this.rCols)) //ideme do prave sme na kraji nepocitame dalej ideme prec
                         {
                             return count;
                         }
@@ -335,12 +335,12 @@ namespace piskvorky2
                         return count;
                     }
 
-                    if (count ==0 && pRow == 0)
+                    if (count ==0 && pRow == 0 && pCol > 0)
                     {
                         inv = true;
                     }
 
-                    if (count==0 && pCol == this.rCols)
+                    if (count==0 && pCol == this.rCols && pRow < this.rCols)
                     {
                         inv = true;
                     }
@@ -358,7 +358,7 @@ namespace piskvorky2
                             vRow--;
                             vCol++;
                         }
-                        else if((!inv && vRow - 1 < 0) &&(!inv && vCol+1 > this.rCols)) // sme na kraji otocime smer..
+                        else if((!inv && vRow - 1 < 0) || (!inv && vCol+1 > this.rCols)) // sme na kraji otocime smer..
                         {
                             inv = true;
                             vRow = pRow + 1;
@@ -372,7 +372,7 @@ namespace piskvorky2
                             vCol--;
                            // vCol = vRow;
                         }
-                        else if ((inv && vRow + 1 > this.rCols) && (inv && vCol-1  <0))//ideme do prave sme na kraji nepocitame dalej ideme prec
+                        else if ((inv && vRow + 1 > this.rCols) || (inv && vCol-1 < 0))//ideme do prave sme na kraji nepocitame dalej ideme prec
                         {
                             return count;
                         }
@@ -394,7 +394,7 @@ namespace piskvorky2
                                 return count;
                             }
 
-                            if (vRow + 1 <= this.rCols) // nie sme na kraji ma to zmysel, meni smer a ideme do prava
+                            if ((vRow + 1 <= this.rCols) && (vCol-1 >= 0)) // nie sme na kraji ma to zmysel, meni smer a ideme do prava
                             {
                                 vRow = pRow + 1;
                                 vCol = pCol - 1;
