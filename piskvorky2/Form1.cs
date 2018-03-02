@@ -73,7 +73,7 @@ namespace piskvorky2
                         break;
                     case PlayerType.Circle:
                         s = "o";
-                       // win = this.field.evaluateGame(pCol, pRow, PlayerType.Circle, out direction);
+                        win = this.field.evaluateGame(pCol, pRow, PlayerType.Circle, out direction);
                         break;
 
                 }
